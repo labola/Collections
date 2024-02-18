@@ -22,9 +22,11 @@ public class CarArrayList implements CarList {
 
     @Override
     public boolean remove(Car car) {
-//        for (int i = 0; i < size; i++) {
-//
-//        }
+        for (int i = 0; i < size; i++) {
+            if(array[i].equals(car)){
+                return removeAt(i);
+            }
+        }
         return false;
     }
 
@@ -45,7 +47,8 @@ public class CarArrayList implements CarList {
 
     @Override
     public void clear() {
-
+       array = new Car[10];
+       size = 0;
     }
 
     private void checkIndex(int index){
