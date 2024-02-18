@@ -1,5 +1,6 @@
 import java.util.Arrays;
 
+
 public class CarArrayList implements CarList {
 
     private Car[] array = new Car[10];
@@ -13,17 +14,28 @@ public class CarArrayList implements CarList {
 
     @Override
     public void add(Car car) {
-        if(size>=array.length){
-            array = Arrays.copyOf(array,array.length*2);
+        increaseArray();
+        array[size] = car;
+        size++;
+    }
+
+    @Override
+    public void add(Car car, int index) {
+
+        increaseArray();
+        if (index <= 0 || index >= size) {
+            throw new IndexOutOfBoundsException();
         }
-        array[size]=car;
+        System.arraycopy(array, size, array, index + 1, size - index);
+
+        array[index] = car;
         size++;
     }
 
     @Override
     public boolean remove(Car car) {
         for (int i = 0; i < size; i++) {
-            if(array[i].equals(car)){
+            if (array[i].equals(car)) {
                 return removeAt(i);
             }
         }
@@ -33,8 +45,13 @@ public class CarArrayList implements CarList {
     @Override
     public boolean removeAt(int index) {
         checkIndex(index);
-        for (int i = index; i < size-1; i++) {
-            array[i]=array[i+1];
+
+        if(index<=0 || index >=size){
+            throw new IndexOutOfBoundsException();
+        }
+        System.arraycopy(array,index,array, index-1, size-index);
+        for (int i = index; i < size - 1; i++) {
+            array[i] = array[i + 1];
         }
         size--;
         return true;
@@ -47,13 +64,19 @@ public class CarArrayList implements CarList {
 
     @Override
     public void clear() {
-       array = new Car[10];
-       size = 0;
+        array = new Car[10];
+        size = 0;
     }
 
-    private void checkIndex(int index){
-        if(index < 0 || index >= size){
+    private void checkIndex(int index) {
+        if (index < 0 || index >= size) {
             throw new IndexOutOfBoundsException();
+        }
+    }
+
+    private void increaseArray() {
+        if (size >= array.length) {
+            array = Arrays.copyOf(array, array.length * 2);
         }
     }
 }
