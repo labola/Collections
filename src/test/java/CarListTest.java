@@ -52,7 +52,7 @@ public class CarListTest {
 
     @Test(expected = IndexOutOfBoundsException.class)
     public void whenIndexOutOfBoundsThenThrowException() {
-        carList.get(100);
+        carList.get(101);
     }
 
     @Test

@@ -8,6 +8,7 @@ public class CarSetTest {
     private CarSet carSet;
     @Before
     public void setUp() throws Exception {
+        carSet = new CarHashSet();
         for (int i = 0; i < 100; i++) {
             carSet.add(new Car("Brand" + i, i));
         }
@@ -15,7 +16,7 @@ public class CarSetTest {
 
     @Test
     public void whenAdd3SimularObjectsThenSizeInc(){
-        assertEquals(100, carSet.size());
+        assertEquals(100,carSet.size());
         assertTrue(carSet.add(new Car("BMW",10)));
         assertFalse(carSet.add(new Car("BMW",10)));
         assertFalse(carSet.add(new Car("BMW",10)));
