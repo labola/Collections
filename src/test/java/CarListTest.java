@@ -87,4 +87,5 @@ public class CarListTest {
         assertEquals("BMW", carFromList.getBrand());
 
     }
+
 }
