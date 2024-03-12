@@ -1,4 +1,4 @@
-public class Car {
+public class Car{
     private String brand;
     private int number;
     public Car(String brand, int number) {
@@ -12,5 +12,14 @@ public class Car {
 
     public int getNumber() {
         return number;
+    }
+
+
+    @Override
+    public String toString() {
+        return "Car{" +
+                "brand='" + brand + '\'' +
+                ", number=" + number +
+                '}';
     }
 }
