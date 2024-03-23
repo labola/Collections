@@ -80,7 +80,7 @@ public class CarListTest {
     }
 
     @Test
-    public void inserIntoLastPosition() {
+    public void insertIntoLastPosition() {
         Car car = new Car("BMW", 1);
         carList.add(car, 100);
         Car carFromList = carList.get(100);
